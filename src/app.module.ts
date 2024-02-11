@@ -2,9 +2,10 @@ import { Module } from '@nestjs/common';
 
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from '@hapi/joi';
-import { DatabaseModule } from './database.module';
+
 import { PostModule } from './post/post.module';
 import { UserModule } from './user/user.module';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [
