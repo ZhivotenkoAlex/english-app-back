@@ -1,6 +1,9 @@
 # compiled output
 /dist
 /node_modules
+.env
+/src/merge/data
+/src/static/sitemap/*.xml
 
 # Logs
 logs
@@ -17,6 +20,7 @@ lerna-debug.log*
 # Tests
 /coverage
 /.nyc_output
+/requests.http
 
 # IDEs and editors
 /.idea
