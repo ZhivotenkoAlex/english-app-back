@@ -11,7 +11,7 @@ const common_1 = require("@nestjs/common");
 const posts_service_1 = require("./posts.service");
 const posts_controller_1 = require("./posts.controller");
 const typeorm_1 = require("@nestjs/typeorm");
-const post_entity_1 = require("./post.entity");
+const posts_entity_1 = require("./posts.entity");
 let PostsModule = class PostsModule {
 };
 exports.PostsModule = PostsModule;
@@ -19,7 +19,7 @@ exports.PostsModule = PostsModule = __decorate([
     (0, common_1.Module)({
         controllers: [posts_controller_1.PostsController],
         providers: [posts_service_1.PostsService],
-        imports: [typeorm_1.TypeOrmModule.forFeature([post_entity_1.PostEntity])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([posts_entity_1.PostEntity])],
     })
 ], PostsModule);
 //# sourceMappingURL=posts.module.js.map
