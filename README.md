@@ -43,3 +43,4 @@ $ yarn run test:cov
 ## Technologies
 
 DB : PostgresQL
+API : GraphQL
