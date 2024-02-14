@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
+    "moduleResolution": "node",
     "module": "commonjs",
+    "resolveJsonModule": true,
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "target": "ES2021",
+    "target": "es2020",
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
@@ -16,6 +18,20 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
-  }
+    "noFallthroughCasesInSwitch": false,
+    "typeRoots": ["./types", "node_modules/@types"],
+    "types": ["jest", "node"],
+    "rootDir": "./",
+    "strict": true,
+    "paths": {
+      "@entities/*": ["src/db/entities/*"],
+      "@common/*": ["src/common/*"],
+      "@helpers/*": ["src/helpers/*"],
+      "@types/*": ["src/types/*"],
+      "@constants/*": ["src/api/constants/*"],
+      "@api/*": ["src/api/*"],
+    },
+  },
+  "modulePaths": ["<rootDir>"],
+  "compileOnSave": true,
 }

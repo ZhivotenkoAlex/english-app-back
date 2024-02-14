@@ -1,9 +1,11 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { ArticlesEntity } from './entities/articles.entity';
-import { Repository } from 'typeorm';
-import { ParsedSentencesEntity } from './entities/parsedSentences.entity';
-import { shuffleArray } from 'src/helpers/shuffleArray';
+import { Injectable } from '@nestjs/common'
+import { InjectRepository } from '@nestjs/typeorm'
+import { shuffleArray } from 'src/helpers/shuffleArray'
+import { Repository } from 'typeorm'
+
+import { ArticlesEntity } from './entities/articles.entity'
+import { ParsedSentencesEntity } from './entities/parsedSentences.entity'
+
 
 @Injectable()
 export class ArticlesService {
@@ -27,9 +29,9 @@ export class ArticlesService {
         'parsedTitle.order': 'ASC',
         'titleItems.order': 'ASC',
       })
-      .getMany();
+      .getMany()
 
-    return shuffleArray(data);
+    return shuffleArray(data)
   }
 
   async findOne(id: number) {
@@ -46,10 +48,10 @@ export class ArticlesService {
         'parsedTitle.order': 'ASC',
         'titleItems.order': 'ASC',
       })
-      .getOne();
+      .getOne()
   }
 
   async findAllSentences() {
-    return await this.parsedSentences.createQueryBuilder('sentences').getMany();
+    return await this.parsedSentences.createQueryBuilder('sentences').getMany()
   }
 }

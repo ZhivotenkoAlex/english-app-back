@@ -1,4 +1,4 @@
-import { ObjectType, Field, ID } from '@nestjs/graphql';
+import { ObjectType, Field, ID } from '@nestjs/graphql'
 import {
   Column,
   Entity,
@@ -6,9 +6,10 @@ import {
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
-} from 'typeorm';
-import { SentencesItemsEntity } from './sentencesItems.entity';
-import { ArticlesEntity } from './articles.entity';
+} from 'typeorm'
+
+import { ArticlesEntity } from './articles.entity'
+import { SentencesItemsEntity } from './sentencesItems.entity'
 
 @ObjectType({ description: 'ParsedSentences' })
 @Entity({
@@ -17,19 +18,19 @@ import { ArticlesEntity } from './articles.entity';
 export class ParsedSentencesEntity {
   @Field(() => ID!, { description: 'id' })
   @PrimaryGeneratedColumn()
-  id: string;
+  id: string
 
   @Field({ description: 'text', nullable: true })
   @Column({ name: 'text', nullable: true })
-  text: string;
+  text: string
 
   @Field({ description: 't', nullable: true })
   @Column({ name: 't', nullable: true })
-  t: string;
+  t: string
 
   @Field({ description: 'articleId' })
   @ManyToOne(() => ArticlesEntity, (item) => item.parsedSentences)
-  sentence: number;
+  sentence: number
 
   @Field(() => [SentencesItemsEntity], { description: 'sentenceItems' })
   @OneToMany(
@@ -37,9 +38,9 @@ export class ParsedSentencesEntity {
     (sentencesItems) => sentencesItems.sentenceItem,
   )
   @JoinColumn({ name: 'sentenceItems' })
-  sentenceItems: [SentencesItemsEntity];
+  sentenceItems: [SentencesItemsEntity]
 
   @Field()
   @Column()
-  order: number;
+  order: number
 }

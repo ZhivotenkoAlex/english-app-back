@@ -1,6 +1,7 @@
-import { ObjectType, Field, ID } from '@nestjs/graphql';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { ParsedTitleEntity } from './parsedTitle.entity';
+import { ObjectType, Field, ID } from '@nestjs/graphql'
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
+
+import { ParsedTitleEntity } from './parsedTitle.entity'
 
 @ObjectType({ description: 'TitleItems' })
 @Entity({
@@ -9,17 +10,17 @@ import { ParsedTitleEntity } from './parsedTitle.entity';
 export class TitleItemsEntity {
   @Field(() => ID, { description: 'id' })
   @PrimaryGeneratedColumn()
-  id: number;
+  id: number
 
   @Field({ description: 'w' })
   @Column({ name: 'w' })
-  w: string;
+  w: string
 
   @Field({ nullable: true })
   @Column({ nullable: true })
-  order: number;
+  order: number
 
   @Field({ description: 'sentenceId' })
   @ManyToOne(() => ParsedTitleEntity, (item) => item.titleItems)
-  titleItem: number;
+  titleItem: number
 }

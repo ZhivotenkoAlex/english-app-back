@@ -1,7 +1,8 @@
-import { Resolver, Query, Args, Int } from '@nestjs/graphql';
-import { ArticlesService } from './articles.service';
-import { ArticlesEntity } from './entities/articles.entity';
-import { ParsedSentencesEntity } from './entities/parsedSentences.entity';
+import { Resolver, Query, Args, Int } from '@nestjs/graphql'
+
+import { ArticlesService } from './articles.service'
+import { ArticlesEntity } from './entities/articles.entity'
+import { ParsedSentencesEntity } from './entities/parsedSentences.entity'
 
 // import { CreateArticleInput } from './dto/create-article.input';
 // import { UpdateArticleInput } from './dto/update-article.input';
@@ -14,21 +15,21 @@ export class ArticlesResolver {
     name: 'getArticles',
   })
   findAll() {
-    return this.articlesService.findAllArticles();
+    return this.articlesService.findAllArticles()
   }
 
   @Query(() => ArticlesEntity, {
     name: 'getArticleById',
   })
   findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.articlesService.findOne(id);
+    return this.articlesService.findOne(id)
   }
 
   @Query(() => [ParsedSentencesEntity], {
     name: 'getSentences',
   })
   findAllSentences() {
-    return this.articlesService.findAllSentences();
+    return this.articlesService.findAllSentences()
   }
 
   // @Mutation(() => ArticlesEntity)
