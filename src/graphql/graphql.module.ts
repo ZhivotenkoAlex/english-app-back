@@ -1,8 +1,8 @@
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { Module } from '@nestjs/common';
-import { GraphQLModule } from '@nestjs/graphql';
-import { DirectiveLocation, GraphQLDirective } from 'graphql';
-import { upperDirectiveTransformer } from 'src/upper-case.directive';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
+import { Module } from '@nestjs/common'
+import { GraphQLModule } from '@nestjs/graphql'
+import { DirectiveLocation, GraphQLDirective } from 'graphql'
+import { upperDirectiveTransformer } from 'src/upper-case.directive'
 
 @Module({
   imports: [

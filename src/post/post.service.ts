@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { Injectable } from '@nestjs/common'
+import { InjectRepository } from '@nestjs/typeorm'
+import { Repository } from 'typeorm'
 
-import { Repository } from 'typeorm';
-import PostEntity from './post.entity';
+import PostEntity from './post.entity'
 
 @Injectable()
 export class PostService {
@@ -12,6 +12,6 @@ export class PostService {
   ) {}
 
   async fetchPosts() {
-    return await this.postRepository.createQueryBuilder('posts').getMany();
+    return await this.postRepository.createQueryBuilder('posts').getMany()
   }
 }

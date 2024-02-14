@@ -1,6 +1,6 @@
-import { config } from 'dotenv';
+import { config } from 'dotenv'
 
-config();
+config()
 
 export default () => ({
   port: parseInt(process.env.PORT, 10) || 4000,
@@ -12,4 +12,4 @@ export default () => ({
     password: process.env.DB_PASSWORD || '',
     db: process.env.DB_NAME || 'postgres',
   },
-});
+})
