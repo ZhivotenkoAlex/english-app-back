@@ -1,13 +1,13 @@
-import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
+import { ObjectType, Field, ID } from '@nestjs/graphql'
 
 @ObjectType({ description: 'TEST' })
 export class Test {
-  @Field((type) => ID, { description: 'test id' })
-  id: string;
+  @Field(() => ID, { description: 'test id' })
+  id: string
 
   @Field({ description: 'test title' })
-  title: string;
+  title: string
 
   @Field({ description: 'test content' })
-  content: string;
+  content: string
 }

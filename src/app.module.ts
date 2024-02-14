@@ -1,10 +1,11 @@
-import { Module } from '@nestjs/common';
-import { PostModule } from './post/post.module';
-import { UserModule } from './user/user.module';
-import { DatabaseModule } from './database/database.module';
-import { TestModule } from './test/test.module';
-import { GraphQlModule } from './graphql/graphql.module';
-import { ConfigAppModule } from './config/config.module';
+import { Module } from '@nestjs/common'
+
+import { ConfigAppModule } from './config/config.module'
+import { DatabaseModule } from './database/database.module'
+import { GraphQlModule } from './graphql/graphql.module'
+import { PostModule } from './post/post.module'
+import { TestModule } from './test/test.module'
+import { UserModule } from './user/user.module'
 
 @Module({
   imports: [

@@ -1,5 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
-import { PostService } from './post.service';
+import { Controller, Get } from '@nestjs/common'
+
+import { PostService } from './post.service'
 
 @Controller('post')
 export class PostController {
@@ -7,6 +8,6 @@ export class PostController {
 
   @Get()
   getPosts() {
-    return this.postsService.fetchPosts();
+    return this.postsService.fetchPosts()
   }
 }
