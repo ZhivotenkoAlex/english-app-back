@@ -4,9 +4,6 @@ import { ArticlesService } from './articles.service'
 import { ArticlesEntity } from './entities/articles.entity'
 import { ParsedSentencesEntity } from './entities/parsedSentences.entity'
 
-// import { CreateArticleInput } from './dto/create-article.input';
-// import { UpdateArticleInput } from './dto/update-article.input';
-
 @Resolver(() => ArticlesEntity)
 export class ArticlesResolver {
   constructor(private readonly articlesService: ArticlesService) {}

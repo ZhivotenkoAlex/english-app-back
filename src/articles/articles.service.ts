@@ -6,7 +6,6 @@ import { Repository } from 'typeorm'
 import { ArticlesEntity } from './entities/articles.entity'
 import { ParsedSentencesEntity } from './entities/parsedSentences.entity'
 
-
 @Injectable()
 export class ArticlesService {
   constructor(
@@ -52,6 +51,6 @@ export class ArticlesService {
   }
 
   async findAllSentences() {
-    return await this.parsedSentences.createQueryBuilder('sentences').getMany()
+    return await this.parsedSentences.createQueryBuilder('translate').getMany()
   }
 }

@@ -89,8 +89,53 @@ type ArticlesEntity {
   parsedTitle: [ParsedTitleEntity!]!
 }
 
+"""TranslateItems"""
+type TranslateItemsEntity {
+  """id"""
+  id: ID!
+
+  """rate"""
+  rate: Float!
+
+  """translateValue"""
+  translateValue: String!
+
+  """sentenceId"""
+  translateItem: Float!
+}
+
+"""Translate"""
+type TranslateEntity {
+  """id"""
+  id: ID!
+
+  """word"""
+  word: String!
+
+  """translateItems"""
+  translateItems: [TranslateItemsEntity!]!
+}
+
+"""TranslateItems"""
+type TranslateItemsEntity1 {
+  """id"""
+  id: ID!
+
+  """rate"""
+  rate: Float!
+
+  """translateValue"""
+  translateValue: String!
+
+  """sentenceId"""
+  translateItem: Float!
+}
+
 type Query {
   getArticles: [ArticlesEntity!]!
   getArticleById(id: Int!): ArticlesEntity!
   getSentences: [ParsedSentencesEntity!]!
+  getTranslateById(id: Int!): TranslateEntity!
+  getTranslateByWord(word: String!): TranslateEntity!
+  getTranslates: [TranslateEntity!]!
 }
