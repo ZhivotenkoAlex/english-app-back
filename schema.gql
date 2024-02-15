@@ -116,21 +116,6 @@ type TranslateEntity {
   translateItems: [TranslateItemsEntity!]!
 }
 
-"""TranslateItems"""
-type TranslateItemsEntity1 {
-  """id"""
-  id: ID!
-
-  """rate"""
-  rate: Float!
-
-  """translateValue"""
-  translateValue: String!
-
-  """sentenceId"""
-  translateItem: Float!
-}
-
 type Query {
   getArticles: [ArticlesEntity!]!
   getArticleById(id: Int!): ArticlesEntity!
