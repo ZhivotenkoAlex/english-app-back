@@ -4,36 +4,93 @@
 
 directive @upper on FIELD_DEFINITION
 
-"""TEST"""
-type Test {
-  """test id"""
+"""SentencesItems"""
+type SentencesItemsEntity {
+  """id"""
   id: ID!
 
-  """test title"""
+  """w"""
+  w: String!
+  order: Float!
+
+  """sentenceId"""
+  sentenceItem: Float!
+}
+
+"""ParsedSentences"""
+type ParsedSentencesEntity {
+  """id"""
+  id: ID!
+
+  """text"""
+  text: String
+
+  """t"""
+  t: String
+
+  """articleId"""
+  sentence: Float!
+
+  """sentenceItems"""
+  sentenceItems: [SentencesItemsEntity!]!
+  order: Float!
+}
+
+"""TitleItems"""
+type TitleItemsEntity {
+  """id"""
+  id: ID!
+
+  """w"""
+  w: String!
+  order: Float
+
+  """sentenceId"""
+  titleItem: Float!
+}
+
+"""ParsedTitle"""
+type ParsedTitleEntity {
+  """id"""
+  id: ID!
+
+  """text"""
+  text: String!
+
+  """articleId"""
+  sentence: Float!
+
+  """titleItems"""
+  titleItems: [TitleItemsEntity!]!
+  order: Float!
+}
+
+"""Articles"""
+type ArticlesEntity {
+  """article id"""
+  id: ID!
+
+  """article type of done"""
+  status: String!
+
+  """article image"""
+  image: String!
+
+  """article page slug"""
+  slug: String!
+
+  """article title"""
   title: String!
 
-  """test content"""
-  content: String!
+  """parsedSentences"""
+  parsedSentences: [ParsedSentencesEntity!]!
+
+  """parsedTitle"""
+  parsedTitle: [ParsedTitleEntity!]!
 }
 
 type Query {
-  getAllPost: [Test!]!
-  getPostById(id: Int!): Test!
-}
-
-type Mutation {
-  createTest(createTestInput: CreateTestInput!): Test!
-  updateTest(updateTestInput: UpdateTestInput!): Test!
-  removeTest(id: Int!): Test!
-}
-
-input CreateTestInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input UpdateTestInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  getArticles: [ArticlesEntity!]!
+  getArticleById(id: Int!): ArticlesEntity!
+  getSentences: [ParsedSentencesEntity!]!
 }
