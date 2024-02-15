@@ -51,6 +51,6 @@ export class ArticlesService {
   }
 
   async findAllSentences() {
-    return await this.parsedSentences.createQueryBuilder('translate').getMany()
+    return await this.parsedSentences.createQueryBuilder().getMany()
   }
 }
