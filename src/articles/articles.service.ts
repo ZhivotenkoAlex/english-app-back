@@ -3,9 +3,9 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { shuffleArray } from 'src/helpers/shuffleArray'
 import { Repository } from 'typeorm'
 
+import { UpdateArticlesStatusInput } from './dto/update-articles-status.input'
 import { ArticlesEntity } from './entities/articles.entity'
 import { ParsedSentencesEntity } from './entities/parsedSentences.entity'
-import { UpdateArticlesStatusInput } from './dto/update-articles-status.input'
 
 @Injectable()
 export class ArticlesService {

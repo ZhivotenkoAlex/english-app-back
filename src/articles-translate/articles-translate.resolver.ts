@@ -1,8 +1,8 @@
 import { Resolver, Query, Args, Int, Mutation } from '@nestjs/graphql'
 
 import { ArticlesTranslateService } from './articles-translate.service'
-import { TranslateEntity } from './entities/translate.entity'
 import { CreateArticlesTranslateInput } from './dto/create-articles-translate.input'
+import { TranslateEntity } from './entities/translate.entity'
 
 @Resolver(() => TranslateEntity)
 export class ArticlesTranslateResolver {

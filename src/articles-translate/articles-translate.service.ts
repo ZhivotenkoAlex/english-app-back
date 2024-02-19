@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 
-import { TranslateEntity } from './entities/translate.entity'
 import { CreateArticlesTranslateInput } from './dto/create-articles-translate.input'
+import { TranslateEntity } from './entities/translate.entity'
 
 @Injectable()
 export class ArticlesTranslateService {
