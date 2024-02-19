@@ -127,7 +127,7 @@ type Query {
 
 type Mutation {
   updateArticleStatus(input: UpdateArticlesStatusInput!): ArticlesEntity!
-  create(input: CreateArticlesTranslateInput!): TranslateEntity!
+  createTranslate(input: CreateArticlesTranslateInput!): TranslateEntity!
 }
 
 input UpdateArticlesStatusInput {

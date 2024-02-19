@@ -29,7 +29,9 @@ export class ArticlesTranslateResolver {
     return this.translateService.getAllTranslates()
   }
 
-  @Mutation(() => TranslateEntity)
+  @Mutation(() => TranslateEntity, {
+    name: 'createTranslate',
+  })
   async create(@Args('input') createArticleInput: CreateArticlesTranslateInput) {
     return this.translateService.createTranslate(createArticleInput)
   }
