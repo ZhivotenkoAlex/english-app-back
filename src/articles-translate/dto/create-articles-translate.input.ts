@@ -1,7 +1,11 @@
-import { InputType, Int, Field } from '@nestjs/graphql'
+import { InputType, Field } from '@nestjs/graphql'
+import { ArticlesItemsTranslateInput } from './create-articles-items.input'
 
 @InputType()
 export class CreateArticlesTranslateInput {
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number
+  @Field({ description: 'word' })
+  word: string
+
+  @Field(() => [ArticlesItemsTranslateInput])
+  translateItems: [ArticlesItemsTranslateInput]
 }

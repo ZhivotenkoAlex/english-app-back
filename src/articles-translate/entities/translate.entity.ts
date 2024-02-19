@@ -1,11 +1,5 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql'
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm'
+import { Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
 
 import { TranslateItemsEntity } from './translateItems.entity'
 
@@ -23,10 +17,9 @@ export class TranslateEntity {
   word: string
 
   @Field(() => [TranslateItemsEntity], { description: 'translateItems' })
-  @OneToMany(
-    () => TranslateItemsEntity,
-    (titleItems) => titleItems.translateItem,
-  )
+  @OneToMany(() => TranslateItemsEntity, (titleItems) => titleItems.translateItem, {
+    cascade: true,
+  })
   @JoinColumn({ name: 'translateItems' })
   translateItems: [TranslateItemsEntity]
 }

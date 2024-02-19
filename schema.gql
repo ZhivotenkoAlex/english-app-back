@@ -124,3 +124,27 @@ type Query {
   getTranslateByWord(word: String!): TranslateEntity!
   getTranslates: [TranslateEntity!]!
 }
+
+type Mutation {
+  updateArticleStatus(input: UpdateArticlesStatusInput!): ArticlesEntity!
+  create(input: CreateArticlesTranslateInput!): TranslateEntity!
+}
+
+input UpdateArticlesStatusInput {
+  id: ID!
+  status: String!
+}
+
+input CreateArticlesTranslateInput {
+  """word"""
+  word: String!
+  translateItems: [ArticlesItemsTranslateInput!]!
+}
+
+input ArticlesItemsTranslateInput {
+  """rate"""
+  rate: Float!
+
+  """translateValue"""
+  translateValue: String!
+}

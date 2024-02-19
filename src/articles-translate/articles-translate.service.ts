@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 
 import { TranslateEntity } from './entities/translate.entity'
+import { CreateArticlesTranslateInput } from './dto/create-articles-translate.input'
 
 @Injectable()
 export class ArticlesTranslateService {
@@ -35,5 +36,9 @@ export class ArticlesTranslateService {
       .leftJoinAndSelect('translate.translateItems', 'translateItems')
       .orderBy({ 'translateItems.rate': 'DESC' })
       .getMany()
+  }
+
+  async createTranslate(data: CreateArticlesTranslateInput) {
+    return await this.translateRepository.save(data)
   }
 }

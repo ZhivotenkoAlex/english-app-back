@@ -1,7 +1,8 @@
-import { Resolver, Query, Args, Int } from '@nestjs/graphql'
+import { Resolver, Query, Args, Int, Mutation } from '@nestjs/graphql'
 
 import { ArticlesTranslateService } from './articles-translate.service'
 import { TranslateEntity } from './entities/translate.entity'
+import { CreateArticlesTranslateInput } from './dto/create-articles-translate.input'
 
 @Resolver(() => TranslateEntity)
 export class ArticlesTranslateResolver {
@@ -28,18 +29,8 @@ export class ArticlesTranslateResolver {
     return this.translateService.getAllTranslates()
   }
 
-  // @Mutation(() => ArticlesEntity)
-  // updateArticle(
-  //   @Args('updateArticleInput') updateArticleInput: UpdateArticleInput,
-  // ) {
-  //   return this.articlesService.update(
-  //     updateArticleInput.id,
-  //     updateArticleInput,
-  //   );
-  // }
-
-  // @Mutation(() => ArticlesEntity)
-  // removeArticle(@Args('id', { type: () => Int }) id: number) {
-  //   return this.articlesService.remove(id);
-  // }
+  @Mutation(() => TranslateEntity)
+  async create(@Args('input') createArticleInput: CreateArticlesTranslateInput) {
+    return this.translateService.createTranslate(createArticleInput)
+  }
 }

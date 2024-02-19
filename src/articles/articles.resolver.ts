@@ -1,8 +1,9 @@
-import { Resolver, Query, Args, Int } from '@nestjs/graphql'
+import { Resolver, Query, Args, Int, Mutation } from '@nestjs/graphql'
 
 import { ArticlesService } from './articles.service'
 import { ArticlesEntity } from './entities/articles.entity'
 import { ParsedSentencesEntity } from './entities/parsedSentences.entity'
+import { UpdateArticlesStatusInput } from './dto/update-articles-status.input'
 
 @Resolver(() => ArticlesEntity)
 export class ArticlesResolver {
@@ -29,18 +30,10 @@ export class ArticlesResolver {
     return this.articlesService.findAllSentences()
   }
 
-  // @Mutation(() => ArticlesEntity)
-  // updateArticle(
-  //   @Args('updateArticleInput') updateArticleInput: UpdateArticleInput,
-  // ) {
-  //   return this.articlesService.update(
-  //     updateArticleInput.id,
-  //     updateArticleInput,
-  //   );
-  // }
-
-  // @Mutation(() => ArticlesEntity)
-  // removeArticle(@Args('id', { type: () => Int }) id: number) {
-  //   return this.articlesService.remove(id);
-  // }
+  @Mutation(() => ArticlesEntity, {
+    name: 'updateArticleStatus',
+  })
+  updateArticle(@Args('input') data: UpdateArticlesStatusInput) {
+    return this.articlesService.updateArticleStatus(data)
+  }
 }
