@@ -89,8 +89,198 @@ type ArticlesEntity {
   parsedTitle: [ParsedTitleEntity!]!
 }
 
+type GrammarExerciseItemVariantEntity {
+  """variant id"""
+  id: ID!
+
+  """variant"""
+  variant: String!
+
+  """grammar exercise item id"""
+  exerciseId: Float!
+}
+
+type GrammarLevelsEntity {
+  """group id"""
+  id: ID!
+
+  """article page slug"""
+  level: String!
+
+  """exercises"""
+  levelExercises: [GrammarEntity!]!
+}
+
+type GrammarEntity {
+  """grammar id"""
+  id: ID!
+
+  """grammar type of done"""
+  status: String!
+
+  """grammar title"""
+  title: String!
+
+  """grammar subtitle"""
+  subtitle: String!
+
+  """grammar icon"""
+  icon: String!
+
+  """grammar slug"""
+  slug: String!
+
+  """grammar level id"""
+  level: String!
+
+  """exerciseItems"""
+  exercises: [GrammarExerciseEntity!]!
+}
+
+type GrammarExerciseEntity {
+  """exercise id"""
+  id: ID!
+
+  """grammar title"""
+  title: String!
+
+  """grammar subtitle"""
+  translation: String!
+
+  """grammar id"""
+  grammarId: Float!
+
+  """levelExercises"""
+  exerciseItems: [GrammarExerciseItemEntity!]!
+}
+
+type GrammarExerciseItemEntity {
+  """exercise item id"""
+  id: ID!
+
+  """Is field for punctuation"""
+  isPunctuation: Boolean!
+
+  """grammar subtitle"""
+  title: String!
+
+  """grammar id"""
+  exerciseId: Float!
+
+  """levelExercises"""
+  variants: [GrammarExerciseItemVariantEntity!]!
+}
+
+type RuleExamplesEntity {
+  """group id"""
+  id: ID!
+  spelling: String!
+  translation: String!
+
+  """rule id"""
+  ruleId: String!
+}
+
+type RuleDataEntity {
+  """group id"""
+  id: ID!
+
+  """data rule code"""
+  code: String!
+
+  """rule description"""
+  description: String!
+
+  """rule description"""
+  title: String!
+
+  """rule id"""
+  ruleId: String!
+
+  """examples for rules"""
+  examples: [RuleExamplesEntity!]!
+}
+
+type RuleEntity {
+  """group id"""
+  id: ID!
+
+  """rule code"""
+  code: String!
+
+  """rule code"""
+  slug: String!
+
+  """rules data"""
+  data: [RuleDataEntity!]!
+}
+
 type Query {
   getArticles: [ArticlesEntity!]!
   getArticleById(id: Int!): ArticlesEntity!
   getSentences: [ParsedSentencesEntity!]!
+  getAllGrammars: [GrammarLevelsEntity!]!
+  grammar(id: Int!): GrammarLevelsEntity!
+  getAllRules: [RuleEntity!]!
+  getRule(id: Int!): RuleEntity!
+}
+
+type Mutation {
+  createGrammar(input: CreateGrammarInput!): GrammarLevelsEntity!
+  updateGrammarStatus(input: UpdateGrammarStatusInput!): GrammarEntity!
+  createRule(input: CreateRuleInput!): RuleEntity!
+}
+
+input CreateGrammarInput {
+  level: String!
+  levelExercises: [GrammarInput!]!
+}
+
+input GrammarInput {
+  title: String!
+  subtitle: String!
+  icon: String!
+  slug: String!
+  exercises: [ExerciseInput!]!
+}
+
+input ExerciseInput {
+  title: String!
+  translation: String!
+  exerciseItems: [ExerciseItemInput!]!
+}
+
+input ExerciseItemInput {
+  isPunctuation: Boolean!
+  title: String!
+  variants: [VariantInput!]!
+}
+
+input VariantInput {
+  variant: String!
+}
+
+input UpdateGrammarStatusInput {
+  level: String
+  levelExercises: [GrammarInput!]
+  id: ID!
+  status: String!
+}
+
+input CreateRuleInput {
+  code: String!
+  slug: String!
+  data: [DataInput!]!
+}
+
+input DataInput {
+  code: String!
+  description: String!
+  title: String!
+  examples: [ExampleInput!]!
+}
+
+input ExampleInput {
+  spelling: String!
+  translation: String!
 }
