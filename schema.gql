@@ -89,8 +89,203 @@ type ArticlesEntity {
   parsedTitle: [ParsedTitleEntity!]!
 }
 
+"""multiselectVariants"""
+type MultiselectVariantsEntity {
+  """id"""
+  id: ID!
+
+  """variant"""
+  variant: String
+
+  """multiselectItem"""
+  multiselectItem: Float!
+}
+
+"""PracticeMultiselect"""
+type PracticeMultiselectEntity {
+  """id"""
+  id: ID!
+
+  """correctVariant"""
+  correctVariant: String
+
+  """practiceItem"""
+  practiceItem: Float!
+
+  """variants"""
+  variants: [MultiselectVariantsEntity!]!
+}
+
+"""practice variants"""
+type PracticeVariantsEntity {
+  """id"""
+  id: ID!
+
+  """variant"""
+  variant: String
+
+  """practiceItem"""
+  practiceItem: Float!
+}
+
+"""practice content entity"""
+type PracticeEntity {
+  """id"""
+  id: ID!
+
+  """type"""
+  type: String
+
+  """missed"""
+  missed: String
+
+  """translation"""
+  translation: String
+
+  """title"""
+  title: String
+
+  """variants"""
+  variants: [PracticeVariantsEntity!]!
+
+  """placeholder"""
+  placeholder: String
+
+  """multiselect"""
+  multiselect: [PracticeMultiselectEntity!]!
+
+  """correctVariant"""
+  correctVariant: String
+
+  """hint"""
+  hint: String
+
+  """lesson ID"""
+  lesson: Float!
+}
+
+"""synonyms"""
+type SynonymsEntity {
+  """id"""
+  id: ID!
+
+  """synonym"""
+  synonym: String
+
+  """vocabularyItemId"""
+  vocabularyItem: Float!
+}
+
+"""vocabulary content entity"""
+type VocabularyEntity {
+  """id"""
+  id: ID!
+
+  """translation"""
+  translation: String
+
+  """title"""
+  title: String
+
+  """transcription"""
+  transcription: String
+
+  """definition"""
+  definition: String
+
+  """example"""
+  example: String
+  order: Float!
+
+  """lesson ID"""
+  lesson: Float!
+
+  """synonyms"""
+  synonyms: [SynonymsEntity!]!
+}
+
+type LessonEntity {
+  """lesson id"""
+  id: ID!
+
+  """lesson page slug"""
+  slug: String!
+
+  """lesson topic"""
+  topic: String!
+
+  """lesson image"""
+  image: String!
+
+  """lesson type of done"""
+  status: String!
+
+  """vocabularyContent"""
+  vocabularyContent: [VocabularyEntity!]!
+
+  """practiceContent"""
+  practiceContent: [PracticeEntity!]!
+}
+
 type Query {
   getArticles: [ArticlesEntity!]!
   getArticleById(id: Int!): ArticlesEntity!
   getSentences: [ParsedSentencesEntity!]!
+  getAllLessons: [LessonEntity!]!
+  getLesson(id: Int!): LessonEntity!
+}
+
+type Mutation {
+  createLesson(createLessonInput: CreateLessonInput!): LessonEntity!
+  updateLessonStatus(input: UpdateLessonStatusInput!): LessonEntity!
+}
+
+input CreateLessonInput {
+  slug: String!
+  topic: String!
+  image: String!
+  status: String!
+  vocabularyContent: [VocabularyInput!]!
+  practiceContent: [PracticeInput!]!
+}
+
+input VocabularyInput {
+  translation: String!
+  title: String!
+  transcription: String!
+  definition: String!
+  example: String!
+  order: Float!
+  lesson: Float!
+  synonyms: [SynonymsInput!]!
+}
+
+input SynonymsInput {
+  synonym: String!
+}
+
+input PracticeInput {
+  type: String!
+  missed: String
+  translation: String!
+  title: String!
+  variants: [VariantsInput!]
+  placeholder: String
+  multiselect: [MultiselectInput!]
+  correctVariant: String!
+  hint: String!
+}
+
+input VariantsInput {
+  variant: String
+}
+
+input MultiselectInput {
+  correctVariant: String!
+  variants: [VariantsInput!]!
+}
+
+input UpdateLessonStatusInput {
+  id: ID!
+  status: String!
 }
