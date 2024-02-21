@@ -25,8 +25,13 @@ export class GrammarResolver {
     return this.grammarService.findOne(id);
   }
 
-  @Mutation(() => GrammarEntity)
+  @Mutation(() => GrammarLevelsEntity)
   updateGrammarStatus(@Args('input') data: UpdateGrammarStatusInput) {
     return this.grammarService.updateStatus(data);
+  }
+
+  @Mutation(() => GrammarEntity)
+  removeGrammar(@Args('id', { type: () => Int }) id: number) {
+    return this.grammarService.remove(id);
   }
 }

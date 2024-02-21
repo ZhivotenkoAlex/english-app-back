@@ -46,7 +46,8 @@ export class GrammarService {
     return this.grammarEntity.findOneBy({ id });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} grammar`;
+  async remove(id: number) {
+    await this.grammarLevelEntity.delete(id);
+    return { id: id };
   }
 }

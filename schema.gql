@@ -227,7 +227,8 @@ type Query {
 
 type Mutation {
   createGrammar(input: CreateGrammarInput!): GrammarLevelsEntity!
-  updateGrammarStatus(input: UpdateGrammarStatusInput!): GrammarEntity!
+  updateGrammarStatus(input: UpdateGrammarStatusInput!): GrammarLevelsEntity!
+  removeGrammar(id: Int!): GrammarEntity!
   createRule(input: CreateRuleInput!): RuleEntity!
 }
 

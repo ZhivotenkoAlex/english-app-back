@@ -17,6 +17,8 @@ export class GrammarExerciseItemVariantEntity {
   variant: string;
 
   @Field({ description: 'grammar exercise item id' })
-  @ManyToOne(() => GrammarExerciseItemEntity, (item) => item.variants)
+  @ManyToOne(() => GrammarExerciseItemEntity, (item) => item.variants, {
+    onDelete: 'CASCADE',
+  })
   exerciseId: number;
 }
