@@ -1,18 +1,11 @@
-import { ObjectType, Field, ID, registerEnumType } from '@nestjs/graphql';
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { ObjectType, Field, ID, registerEnumType } from '@nestjs/graphql'
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
 
-import { GrammarExerciseEntity } from './grammarExercise.entity';
-import { GrammarLevelsEntity } from './grammarLevels.entity';
-import { ExerciseStatus } from '../../types/articles';
+import { GrammarExerciseEntity } from './grammarExercise.entity'
+import { GrammarLevelsEntity } from './grammarLevels.entity'
+import { ExerciseStatus } from '../../types/types'
 
-registerEnumType(ExerciseStatus, { name: 'ExerciseStatus' });
+registerEnumType(ExerciseStatus, { name: 'ExerciseStatus' })
 
 @ObjectType()
 @Entity({
@@ -21,7 +14,7 @@ registerEnumType(ExerciseStatus, { name: 'ExerciseStatus' });
 export class GrammarEntity {
   @Field(() => ID, { description: 'grammar id' })
   @PrimaryGeneratedColumn()
-  id: number;
+  id: number
 
   @Field({ description: 'grammar type of done' })
   @Column({
@@ -29,36 +22,34 @@ export class GrammarEntity {
     enum: ExerciseStatus,
     default: ExerciseStatus.NOT_STARTED,
   })
-  status: string;
+  status: string
 
   @Field({ description: 'grammar title' })
   @Column()
-  title: string;
+  title: string
 
   @Field({ description: 'grammar subtitle' })
   @Column()
-  subtitle: string;
+  subtitle: string
 
   @Field({ description: 'grammar icon' })
   @Column()
-  icon: string;
+  icon: string
 
   @Field({ description: 'grammar slug' })
   @Column()
-  slug: string;
+  slug: string
 
   @Field({ description: 'grammar level id' })
   @ManyToOne(() => GrammarLevelsEntity, (item) => item.level, {
     onDelete: 'CASCADE',
   })
-  level: string;
+  level: string
 
   @Field(() => [GrammarExerciseEntity], { description: 'exerciseItems' })
-  @OneToMany(
-    () => GrammarExerciseEntity,
-    (exerciseItems) => exerciseItems.grammarId,
-    { cascade: true },
-  )
+  @OneToMany(() => GrammarExerciseEntity, (exerciseItems) => exerciseItems.grammarId, {
+    cascade: true,
+  })
   @JoinColumn({ name: 'exercises' })
-  exercises: [GrammarExerciseEntity];
+  exercises: [GrammarExerciseEntity]
 }

@@ -1,12 +1,5 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql'
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm'
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
 
 import { ArticlesEntity } from './articles.entity'
 import { SentencesItemsEntity } from './sentencesItems.entity'
@@ -33,10 +26,7 @@ export class ParsedSentencesEntity {
   sentence: number
 
   @Field(() => [SentencesItemsEntity], { description: 'sentenceItems' })
-  @OneToMany(
-    () => SentencesItemsEntity,
-    (sentencesItems) => sentencesItems.sentenceItem,
-  )
+  @OneToMany(() => SentencesItemsEntity, (sentencesItems) => sentencesItems.sentenceItem)
   @JoinColumn({ name: 'sentenceItems' })
   sentenceItems: [SentencesItemsEntity]
 
