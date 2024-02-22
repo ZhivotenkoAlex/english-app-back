@@ -3,9 +3,9 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { shuffleArray } from 'src/helpers/shuffleArray'
 import { Repository } from 'typeorm'
 
+import { UpdateArticlesStatusInput } from './dto/update-articles-status.input'
 import { ArticlesEntity } from './entities/articles.entity'
 import { ParsedSentencesEntity } from './entities/parsedSentences.entity'
-
 
 @Injectable()
 export class ArticlesService {
@@ -52,6 +52,12 @@ export class ArticlesService {
   }
 
   async findAllSentences() {
-    return await this.parsedSentences.createQueryBuilder('sentences').getMany()
+    return await this.parsedSentences.createQueryBuilder().getMany()
+  }
+
+  async updateArticleStatus(data: UpdateArticlesStatusInput) {
+    const id = data.id
+    await this.articlesRepository.update(id, data)
+    return this.articlesRepository.findOneBy({ id })
   }
 }

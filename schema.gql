@@ -89,8 +89,62 @@ type ArticlesEntity {
   parsedTitle: [ParsedTitleEntity!]!
 }
 
+"""TranslateItems"""
+type TranslateItemsEntity {
+  """id"""
+  id: ID!
+
+  """rate"""
+  rate: Float!
+
+  """translateValue"""
+  translateValue: String!
+
+  """sentenceId"""
+  translateItem: Float!
+}
+
+"""Translate"""
+type TranslateEntity {
+  """id"""
+  id: ID!
+
+  """word"""
+  word: String!
+
+  """translateItems"""
+  translateItems: [TranslateItemsEntity!]!
+}
+
 type Query {
   getArticles: [ArticlesEntity!]!
   getArticleById(id: Int!): ArticlesEntity!
   getSentences: [ParsedSentencesEntity!]!
+  getTranslateById(id: Int!): TranslateEntity!
+  getTranslateByWord(word: String!): TranslateEntity!
+  getTranslates: [TranslateEntity!]!
+}
+
+type Mutation {
+  updateArticleStatus(input: UpdateArticlesStatusInput!): ArticlesEntity!
+  createTranslate(input: CreateArticlesTranslateInput!): TranslateEntity!
+}
+
+input UpdateArticlesStatusInput {
+  id: ID!
+  status: String!
+}
+
+input CreateArticlesTranslateInput {
+  """word"""
+  word: String!
+  translateItems: [ArticlesItemsTranslateInput!]!
+}
+
+input ArticlesItemsTranslateInput {
+  """rate"""
+  rate: Float!
+
+  """translateValue"""
+  translateValue: String!
 }
