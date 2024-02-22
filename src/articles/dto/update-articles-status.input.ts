@@ -1,6 +1,6 @@
 import { InputType, Field, PartialType, ID } from '@nestjs/graphql'
 
-import { ExerciseStatus } from '../../types/articles'
+import { ExerciseStatus } from '../../types/types'
 import { ArticlesEntity } from '../entities/articles.entity'
 
 @InputType()
