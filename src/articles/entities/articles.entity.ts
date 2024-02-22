@@ -1,11 +1,5 @@
 import { ObjectType, Field, ID, registerEnumType } from '@nestjs/graphql'
-import {
-  Column,
-  Entity,
-  JoinColumn,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm'
+import { Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
 
 import { ParsedSentencesEntity } from './parsedSentences.entity'
 import { ParsedTitleEntity } from './parsedTitle.entity'
@@ -43,10 +37,7 @@ export class ArticlesEntity {
   title: string
 
   @Field(() => [ParsedSentencesEntity], { description: 'parsedSentences' })
-  @OneToMany(
-    () => ParsedSentencesEntity,
-    (parsedSentences) => parsedSentences.sentence,
-  )
+  @OneToMany(() => ParsedSentencesEntity, (parsedSentences) => parsedSentences.sentence)
   @JoinColumn({ name: 'parsedSentences' })
   parsedSentences: [ParsedSentencesEntity]
 

@@ -4,288 +4,225 @@
 
 directive @upper on FIELD_DEFINITION
 
-"""SentencesItems"""
+"""
+SentencesItems
+"""
 type SentencesItemsEntity {
-  """id"""
+  """
+  id
+  """
   id: ID!
 
-  """w"""
+  """
+  w
+  """
   w: String!
   order: Float!
 
-  """sentenceId"""
+  """
+  sentenceId
+  """
   sentenceItem: Float!
 }
 
-"""ParsedSentences"""
+"""
+ParsedSentences
+"""
 type ParsedSentencesEntity {
-  """id"""
+  """
+  id
+  """
   id: ID!
 
-  """text"""
+  """
+  text
+  """
   text: String
 
-  """t"""
+  """
+  t
+  """
   t: String
 
-  """articleId"""
+  """
+  articleId
+  """
   sentence: Float!
 
-  """sentenceItems"""
+  """
+  sentenceItems
+  """
   sentenceItems: [SentencesItemsEntity!]!
   order: Float!
 }
 
-"""TitleItems"""
+"""
+TitleItems
+"""
 type TitleItemsEntity {
-  """id"""
+  """
+  id
+  """
   id: ID!
 
-  """w"""
+  """
+  w
+  """
   w: String!
   order: Float
 
-  """sentenceId"""
+  """
+  sentenceId
+  """
   titleItem: Float!
 }
 
-"""ParsedTitle"""
+"""
+ParsedTitle
+"""
 type ParsedTitleEntity {
-  """id"""
+  """
+  id
+  """
   id: ID!
 
-  """text"""
+  """
+  text
+  """
   text: String!
 
-  """articleId"""
+  """
+  articleId
+  """
   sentence: Float!
 
-  """titleItems"""
+  """
+  titleItems
+  """
   titleItems: [TitleItemsEntity!]!
   order: Float!
 }
 
-"""Articles"""
+"""
+Articles
+"""
 type ArticlesEntity {
-  """article id"""
+  """
+  article id
+  """
   id: ID!
 
-  """article type of done"""
+  """
+  article type of done
+  """
   status: String!
 
-  """article image"""
+  """
+  article image
+  """
   image: String!
 
-  """article page slug"""
+  """
+  article page slug
+  """
   slug: String!
 
-  """article title"""
+  """
+  article title
+  """
   title: String!
 
-  """parsedSentences"""
+  """
+  parsedSentences
+  """
   parsedSentences: [ParsedSentencesEntity!]!
 
-  """parsedTitle"""
+  """
+  parsedTitle
+  """
   parsedTitle: [ParsedTitleEntity!]!
 }
 
-"""multiselectVariants"""
-type MultiselectVariantsEntity {
-  """id"""
+"""
+TranslateItems
+"""
+type TranslateItemsEntity {
+  """
+  id
+  """
   id: ID!
 
-  """variant"""
-  variant: String
+  """
+  rate
+  """
+  rate: Float!
 
-  """multiselectItem"""
-  multiselectItem: Float!
+  """
+  translateValue
+  """
+  translateValue: String!
+
+  """
+  sentenceId
+  """
+  translateItem: Float!
 }
 
-"""PracticeMultiselect"""
-type PracticeMultiselectEntity {
-  """id"""
+"""
+Translate
+"""
+type TranslateEntity {
+  """
+  id
+  """
   id: ID!
 
-  """correctVariant"""
-  correctVariant: String
+  """
+  word
+  """
+  word: String!
 
-  """practiceItem"""
-  practiceItem: Float!
-
-  """variants"""
-  variants: [MultiselectVariantsEntity!]!
-}
-
-"""practice variants"""
-type PracticeVariantsEntity {
-  """id"""
-  id: ID!
-
-  """variant"""
-  variant: String
-
-  """practiceItem"""
-  practiceItem: Float!
-}
-
-"""practice content entity"""
-type PracticeEntity {
-  """id"""
-  id: ID!
-
-  """type"""
-  type: String
-
-  """missed"""
-  missed: String
-
-  """translation"""
-  translation: String
-
-  """title"""
-  title: String
-
-  """variants"""
-  variants: [PracticeVariantsEntity!]!
-
-  """placeholder"""
-  placeholder: String
-
-  """multiselect"""
-  multiselect: [PracticeMultiselectEntity!]!
-
-  """correctVariant"""
-  correctVariant: String
-
-  """hint"""
-  hint: String
-
-  """lesson ID"""
-  lesson: Float!
-}
-
-"""synonyms"""
-type SynonymsEntity {
-  """id"""
-  id: ID!
-
-  """synonym"""
-  synonym: String
-
-  """vocabularyItemId"""
-  vocabularyItem: Float!
-}
-
-"""vocabulary content entity"""
-type VocabularyEntity {
-  """id"""
-  id: ID!
-
-  """translation"""
-  translation: String
-
-  """title"""
-  title: String
-
-  """transcription"""
-  transcription: String
-
-  """definition"""
-  definition: String
-
-  """example"""
-  example: String
-  order: Float!
-
-  """lesson ID"""
-  lesson: Float!
-
-  """synonyms"""
-  synonyms: [SynonymsEntity!]!
-}
-
-type LessonEntity {
-  """lesson id"""
-  id: ID!
-
-  """lesson page slug"""
-  slug: String!
-
-  """lesson topic"""
-  topic: String!
-
-  """lesson image"""
-  image: String!
-
-  """lesson type of done"""
-  status: String!
-
-  """vocabularyContent"""
-  vocabularyContent: [VocabularyEntity!]!
-
-  """practiceContent"""
-  practiceContent: [PracticeEntity!]!
+  """
+  translateItems
+  """
+  translateItems: [TranslateItemsEntity!]!
 }
 
 type Query {
   getArticles: [ArticlesEntity!]!
   getArticleById(id: Int!): ArticlesEntity!
   getSentences: [ParsedSentencesEntity!]!
-  getAllLessons: [LessonEntity!]!
-  getLesson(id: Int!): LessonEntity!
+  getTranslateById(id: Int!): TranslateEntity!
+  getTranslateByWord(word: String!): TranslateEntity!
+  getTranslates: [TranslateEntity!]!
 }
 
 type Mutation {
-  createLesson(createLessonInput: CreateLessonInput!): LessonEntity!
-  updateLessonStatus(input: UpdateLessonStatusInput!): LessonEntity!
+  updateArticleStatus(input: UpdateArticlesStatusInput!): ArticlesEntity!
+  createTranslate(input: CreateArticlesTranslateInput!): TranslateEntity!
 }
 
-input CreateLessonInput {
-  slug: String!
-  topic: String!
-  image: String!
-  status: String!
-  vocabularyContent: [VocabularyInput!]!
-  practiceContent: [PracticeInput!]!
-}
-
-input VocabularyInput {
-  translation: String!
-  title: String!
-  transcription: String!
-  definition: String!
-  example: String!
-  order: Float!
-  lesson: Float!
-  synonyms: [SynonymsInput!]!
-}
-
-input SynonymsInput {
-  synonym: String!
-}
-
-input PracticeInput {
-  type: String!
-  missed: String
-  translation: String!
-  title: String!
-  variants: [VariantsInput!]
-  placeholder: String
-  multiselect: [MultiselectInput!]
-  correctVariant: String!
-  hint: String!
-}
-
-input VariantsInput {
-  variant: String
-}
-
-input MultiselectInput {
-  correctVariant: String!
-  variants: [VariantsInput!]!
-}
-
-input UpdateLessonStatusInput {
+input UpdateArticlesStatusInput {
   id: ID!
   status: String!
+}
+
+input CreateArticlesTranslateInput {
+  """
+  word
+  """
+  word: String!
+  translateItems: [ArticlesItemsTranslateInput!]!
+}
+
+input ArticlesItemsTranslateInput {
+  """
+  rate
+  """
+  rate: Float!
+
+  """
+  translateValue
+  """
+  translateValue: String!
 }
