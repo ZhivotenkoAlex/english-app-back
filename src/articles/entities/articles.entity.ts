@@ -3,7 +3,7 @@ import { Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from 't
 
 import { ParsedSentencesEntity } from './parsedSentences.entity'
 import { ParsedTitleEntity } from './parsedTitle.entity'
-import { ExerciseStatus } from '../../types/articles'
+import { ExerciseStatus } from '../../types/types'
 
 registerEnumType(ExerciseStatus, { name: 'ExerciseStatus' })
 

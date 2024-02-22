@@ -4,115 +4,187 @@
 
 directive @upper on FIELD_DEFINITION
 
-"""SentencesItems"""
+"""
+SentencesItems
+"""
 type SentencesItemsEntity {
-  """id"""
+  """
+  id
+  """
   id: ID!
 
-  """w"""
+  """
+  w
+  """
   w: String!
   order: Float!
 
-  """sentenceId"""
+  """
+  sentenceId
+  """
   sentenceItem: Float!
 }
 
-"""ParsedSentences"""
+"""
+ParsedSentences
+"""
 type ParsedSentencesEntity {
-  """id"""
+  """
+  id
+  """
   id: ID!
 
-  """text"""
+  """
+  text
+  """
   text: String
 
-  """t"""
+  """
+  t
+  """
   t: String
 
-  """articleId"""
+  """
+  articleId
+  """
   sentence: Float!
 
-  """sentenceItems"""
+  """
+  sentenceItems
+  """
   sentenceItems: [SentencesItemsEntity!]!
   order: Float!
 }
 
-"""TitleItems"""
+"""
+TitleItems
+"""
 type TitleItemsEntity {
-  """id"""
+  """
+  id
+  """
   id: ID!
 
-  """w"""
+  """
+  w
+  """
   w: String!
   order: Float
 
-  """sentenceId"""
+  """
+  sentenceId
+  """
   titleItem: Float!
 }
 
-"""ParsedTitle"""
+"""
+ParsedTitle
+"""
 type ParsedTitleEntity {
-  """id"""
+  """
+  id
+  """
   id: ID!
 
-  """text"""
+  """
+  text
+  """
   text: String!
 
-  """articleId"""
+  """
+  articleId
+  """
   sentence: Float!
 
-  """titleItems"""
+  """
+  titleItems
+  """
   titleItems: [TitleItemsEntity!]!
   order: Float!
 }
 
-"""Articles"""
+"""
+Articles
+"""
 type ArticlesEntity {
-  """article id"""
+  """
+  article id
+  """
   id: ID!
 
-  """article type of done"""
+  """
+  article type of done
+  """
   status: String!
 
-  """article image"""
+  """
+  article image
+  """
   image: String!
 
-  """article page slug"""
+  """
+  article page slug
+  """
   slug: String!
 
-  """article title"""
+  """
+  article title
+  """
   title: String!
 
-  """parsedSentences"""
+  """
+  parsedSentences
+  """
   parsedSentences: [ParsedSentencesEntity!]!
 
-  """parsedTitle"""
+  """
+  parsedTitle
+  """
   parsedTitle: [ParsedTitleEntity!]!
 }
 
-"""TranslateItems"""
+"""
+TranslateItems
+"""
 type TranslateItemsEntity {
-  """id"""
+  """
+  id
+  """
   id: ID!
 
-  """rate"""
+  """
+  rate
+  """
   rate: Float!
 
-  """translateValue"""
+  """
+  translateValue
+  """
   translateValue: String!
 
-  """sentenceId"""
+  """
+  sentenceId
+  """
   translateItem: Float!
 }
 
-"""Translate"""
+"""
+Translate
+"""
 type TranslateEntity {
-  """id"""
+  """
+  id
+  """
   id: ID!
 
-  """word"""
+  """
+  word
+  """
   word: String!
 
-  """translateItems"""
+  """
+  translateItems
+  """
   translateItems: [TranslateItemsEntity!]!
 }
 
@@ -136,15 +208,21 @@ input UpdateArticlesStatusInput {
 }
 
 input CreateArticlesTranslateInput {
-  """word"""
+  """
+  word
+  """
   word: String!
   translateItems: [ArticlesItemsTranslateInput!]!
 }
 
 input ArticlesItemsTranslateInput {
-  """rate"""
+  """
+  rate
+  """
   rate: Float!
 
-  """translateValue"""
+  """
+  translateValue
+  """
   translateValue: String!
 }

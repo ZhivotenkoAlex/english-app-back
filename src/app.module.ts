@@ -5,6 +5,7 @@ import { ArticlesTranslateModule } from './articles-translate/articles-translate
 import { ConfigAppModule } from './config/config.module'
 import { DatabaseModule } from './database/database.module'
 import { GraphQlModule } from './graphql/graphql.module'
+import { LessonsModule } from './lessons/lessons.module'
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { GraphQlModule } from './graphql/graphql.module'
     GraphQlModule,
     DatabaseModule,
     ArticlesModule,
+    LessonsModule,
     ArticlesTranslateModule,
   ],
   controllers: [],

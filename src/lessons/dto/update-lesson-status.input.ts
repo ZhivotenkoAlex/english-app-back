@@ -1,12 +1,12 @@
 import { InputType, Field, PartialType, ID } from '@nestjs/graphql'
 
 import { ExerciseStatus } from '../../types/types'
-import { ArticlesEntity } from '../entities/articles.entity'
+import { LessonEntity } from '../entities/lesson.entity'
 
 @InputType()
-export class UpdateArticlesStatusInput extends PartialType(ArticlesEntity) {
+export class UpdateLessonStatusInput extends PartialType(LessonEntity) {
   @Field(() => ID)
-  id?: string
+  id?: number
 
   @Field()
   status: ExerciseStatus
