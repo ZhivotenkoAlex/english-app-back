@@ -221,6 +221,7 @@ type Query {
   getSentences: [ParsedSentencesEntity!]!
   getAllGrammars: [GrammarLevelsEntity!]!
   grammar(id: Int!): GrammarLevelsEntity!
+  getGrammarBySlug(slug: String!): GrammarEntity!
   getAllRules: [RuleEntity!]!
   getRule(id: Int!): RuleEntity!
 }
@@ -228,6 +229,7 @@ type Query {
 type Mutation {
   createGrammar(input: CreateGrammarInput!): GrammarLevelsEntity!
   updateGrammarStatus(input: UpdateGrammarStatusInput!): GrammarLevelsEntity!
+  updateGrammar(input: CreateGrammarInput!): GrammarLevelsEntity!
   removeGrammar(id: Int!): GrammarEntity!
   createRule(input: CreateRuleInput!): RuleEntity!
 }
@@ -262,8 +264,6 @@ input VariantInput {
 }
 
 input UpdateGrammarStatusInput {
-  level: String
-  levelExercises: [GrammarInput!]
   id: ID!
   status: String!
 }

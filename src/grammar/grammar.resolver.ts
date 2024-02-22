@@ -21,13 +21,23 @@ export class GrammarResolver {
   }
 
   @Query(() => GrammarLevelsEntity, { name: 'grammar' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOneById(@Args('id', { type: () => Int }) id: number) {
     return this.grammarService.findOne(id);
+  }
+
+  @Query(() => GrammarEntity, { name: 'getGrammarBySlug' })
+  findOneBySlug(@Args('slug') slug: string) {
+    return this.grammarService.findOneBySlug(slug);
   }
 
   @Mutation(() => GrammarLevelsEntity)
   updateGrammarStatus(@Args('input') data: UpdateGrammarStatusInput) {
     return this.grammarService.updateStatus(data);
+  }
+
+  @Mutation(() => GrammarLevelsEntity)
+  updateGrammar(@Args('input') data: CreateGrammarInput) {
+    return this.grammarService.update(data);
   }
 
   @Mutation(() => GrammarEntity)

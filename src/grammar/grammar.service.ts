@@ -16,7 +16,7 @@ export class GrammarService {
     private grammarEntity: Repository<GrammarEntity>,
   ) {}
   async create(createGrammarInput: CreateGrammarInput) {
-    return await this.grammarLevelEntity.save(createGrammarInput);
+    return await this.grammarEntity.save(createGrammarInput);
   }
 
   async findAll() {
@@ -40,6 +40,16 @@ export class GrammarService {
       .getOne();
   }
 
+  async findOneBySlug(slug: string) {
+    return await this.grammarEntity
+      .createQueryBuilder('grammar')
+      .where('grammar.slug = :slug', { slug })
+      .leftJoinAndSelect('grammar.exercises', 'grammarExercises')
+      .leftJoinAndSelect('grammarExercises.exerciseItems', 'grammarItems')
+      .leftJoinAndSelect('grammarItems.variants', 'grammarVariants')
+      .getOne();
+  }
+
   async updateStatus(data: UpdateGrammarStatusInput) {
     const id = data.id;
     await this.grammarEntity.update(id, data);
@@ -47,7 +57,28 @@ export class GrammarService {
   }
 
   async remove(id: number) {
-    await this.grammarLevelEntity.delete(id);
+    await this.grammarEntity.delete(id);
     return { id: id };
+  }
+
+  async update(data: CreateGrammarInput) {
+    const { level } = data;
+
+    const grammar = await await this.grammarLevelEntity
+      .createQueryBuilder('grammarLevel')
+      .where('grammarLevel.level = :level', { level })
+      .leftJoinAndSelect('grammarLevel.levelExercises', 'grammar')
+      .leftJoinAndSelect('grammar.exercises', 'grammarExercises')
+      .leftJoinAndSelect('grammarExercises.exerciseItems', 'grammarItems')
+      .leftJoinAndSelect('grammarItems.variants', 'grammarVariants')
+      .getOne();
+
+    const updatedGrammar = {
+      ...grammar,
+      levelExercises: [...grammar.levelExercises, ...data.levelExercises],
+    };
+
+    await this.grammarLevelEntity.save(updatedGrammar);
+    return await this.findOne(grammar.id);
   }
 }
