@@ -9,6 +9,10 @@ import { upperDirectiveTransformer } from '../upper-case.directive'
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: true,
+      //enable playground for production
+      introspection: true,
+      playground: true,
+      // ======= //
       transformSchema: (schema) => upperDirectiveTransformer(schema, 'upper'),
       installSubscriptionHandlers: true,
       buildSchemaOptions: {
