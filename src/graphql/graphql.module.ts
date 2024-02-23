@@ -11,6 +11,11 @@ import { upperDirectiveTransformer } from 'src/upper-case.directive'
       autoSchemaFile: 'schema.gql',
       transformSchema: (schema) => upperDirectiveTransformer(schema, 'upper'),
       installSubscriptionHandlers: true,
+      playground: {
+        settings: {
+          "request.credentials": "include", // Otherwise cookies won't be sent
+        },
+      },
       buildSchemaOptions: {
         directives: [
           new GraphQLDirective({
@@ -22,4 +27,4 @@ import { upperDirectiveTransformer } from 'src/upper-case.directive'
     }),
   ],
 })
-export class GraphQlModule {}
+export class GraphQlModule { }
