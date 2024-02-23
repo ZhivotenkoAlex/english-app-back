@@ -1,12 +1,11 @@
 import { Field, ID, ObjectType } from "@nestjs/graphql"
 import { TokenEntity } from "src/auth/entities/token.entity"
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 
 @ObjectType({ description: "User" })
 @Entity({
     name: 'users',
 })
-
 export class UserEntity {
     @Field(() => ID, { description: 'user id' })
     @PrimaryGeneratedColumn()
@@ -21,6 +20,6 @@ export class UserEntity {
     password: string
 
     @Field(() => [TokenEntity], { description: 'tokens' })
-    @ManyToOne(() => TokenEntity, (token) => token.user)
-    tokens: [TokenEntity]
+    @OneToMany(() => TokenEntity, (token) => token.user)
+    tokens: TokenEntity[]
 }

@@ -4,9 +4,8 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
 
 @ObjectType({ description: "Token" })
 @Entity({
-    name: 'articles',
+    name: 'tokens',
 })
-
 export class TokenEntity {
     @Field(() => ID, { description: 'token id' })
     @PrimaryGeneratedColumn()
