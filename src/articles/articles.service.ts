@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { shuffleArray } from 'src/helpers/shuffleArray'
+import { shuffleArray } from '../helpers/shuffleArray'
 import { Repository } from 'typeorm'
 
 import { UpdateArticlesStatusInput } from './dto/update-articles-status.input'
