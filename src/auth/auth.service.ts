@@ -1,7 +1,6 @@
 import { Injectable } from "@nestjs/common"
 import { InjectRepository } from "@nestjs/typeorm"
-import jwt from 'jsonwebtoken'
-import { UserEntity } from "src/users/entities/users.entities"
+import * as jwt from 'jsonwebtoken'
 import { Repository } from "typeorm"
 
 import { TokenEntity } from "./entities/token.entity"
@@ -9,7 +8,7 @@ import { TokenEntity } from "./entities/token.entity"
 @Injectable()
 export class AuthService {
     constructor(
-        @InjectRepository(UserEntity)
+        @InjectRepository(TokenEntity)
         private tokenRepository: Repository<TokenEntity>,
     ) {
 
@@ -26,7 +25,10 @@ export class AuthService {
     }
 
     async saveToken(userId: string, refreshToken: string) {
-        const tokenData = await this.tokenRepository.findOne({ where: { user: { id: userId } } })
+        const tokenData = await this.tokenRepository.findOne({
+            where: { user: { id: userId } },
+            relations: ['user'],
+        })
         if (tokenData) {
             return await this.tokenRepository.update(tokenData.id, { refreshToken })
         }

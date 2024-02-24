@@ -1,5 +1,5 @@
 import { Field, ID, ObjectType } from "@nestjs/graphql"
-import { UserEntity } from "src/users/entities/users.entities"
+import { UserEntity } from "src/users/entities/users.entity"
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
 
 @ObjectType({ description: "Token" })
@@ -9,7 +9,7 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
 export class TokenEntity {
     @Field(() => ID, { description: 'token id' })
     @PrimaryGeneratedColumn()
-    id: string
+    id: number
 
     @Field({ description: 'refreshToken' })
     @Column()

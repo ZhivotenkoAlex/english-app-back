@@ -1,10 +1,10 @@
 import { Injectable } from "@nestjs/common"
 import { InjectRepository } from "@nestjs/typeorm"
-import bcrypt from 'bcrypt'
+import * as bcrypt from 'bcrypt'
 import { AuthService } from "src/auth/auth.service"
 import { Repository } from "typeorm"
 
-import { UserEntity } from "./entities/users.entities"
+import { UserEntity } from "./entities/users.entity"
 
 
 @Injectable()

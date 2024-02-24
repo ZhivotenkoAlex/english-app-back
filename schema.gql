@@ -89,6 +89,72 @@ type ArticlesEntity {
   parsedTitle: [ParsedTitleEntity!]!
 }
 
+"""TranslateItems"""
+type TranslateItemsEntity {
+  """id"""
+  id: ID!
+
+  """rate"""
+  rate: Float!
+
+  """translateValue"""
+  translateValue: String!
+
+  """sentenceId"""
+  translateItem: Float!
+}
+
+"""Translate"""
+type TranslateEntity {
+  """id"""
+  id: ID!
+
+  """word"""
+  word: String!
+
+  """translateItems"""
+  translateItems: [TranslateItemsEntity!]!
+}
+
+"""User"""
+type UserEntity {
+  """user id"""
+  id: ID!
+
+  """email"""
+  email: String!
+
+  """password"""
+  password: String!
+
+  """tokens"""
+  tokens: [TokenEntity!]!
+}
+
+"""Token"""
+type TokenEntity {
+  """token id"""
+  id: ID!
+
+  """refreshToken"""
+  refreshToken: String!
+
+  """user"""
+  user: UserEntity!
+}
+
+"""Registration response"""
+type RegisterResponse {
+  """User information"""
+  user: UserEntity!
+
+  """Access token"""
+  accessToken: String!
+
+  """Refresh token"""
+  refreshToken: String!
+}
+
 type GrammarExerciseItemVariantEntity {
   """variant id"""
   id: ID!
@@ -169,77 +235,6 @@ type GrammarExerciseItemEntity {
 
   """levelExercises"""
   variants: [GrammarExerciseItemVariantEntity!]!
-}
-
-type RuleExamplesEntity {
-  """group id"""
-  id: ID!
-  spelling: String!
-  translation: String!
-
-  """rule id"""
-  ruleId: String!
-}
-
-type RuleDataEntity {
-  """group id"""
-  id: ID!
-
-  """data rule code"""
-  code: String!
-
-  """rule description"""
-  description: String!
-
-  """rule description"""
-  title: String!
-
-  """rule id"""
-  ruleId: String!
-
-  """examples for rules"""
-  examples: [RuleExamplesEntity!]!
-}
-
-type RuleEntity {
-  """group id"""
-  id: ID!
-
-  """rule code"""
-  code: String!
-
-  """rule code"""
-  slug: String!
-
-  """rules data"""
-  data: [RuleDataEntity!]!
-}
-
-"""TranslateItems"""
-type TranslateItemsEntity {
-  """id"""
-  id: ID!
-
-  """rate"""
-  rate: Float!
-
-  """translateValue"""
-  translateValue: String!
-
-  """sentenceId"""
-  translateItem: Float!
-}
-
-"""Translate"""
-type TranslateEntity {
-  """id"""
-  id: ID!
-
-  """word"""
-  word: String!
-
-  """translateItems"""
-  translateItems: [TranslateItemsEntity!]!
 }
 
 """multiselectVariants"""
@@ -380,6 +375,50 @@ type LessonEntity {
   practiceContent: [PracticeEntity!]!
 }
 
+type RuleExamplesEntity {
+  """group id"""
+  id: ID!
+  spelling: String!
+  translation: String!
+
+  """rule id"""
+  ruleId: String!
+}
+
+type RuleDataEntity {
+  """group id"""
+  id: ID!
+
+  """data rule code"""
+  code: String!
+
+  """rule description"""
+  description: String!
+
+  """rule description"""
+  title: String!
+
+  """rule id"""
+  ruleId: String!
+
+  """examples for rules"""
+  examples: [RuleExamplesEntity!]!
+}
+
+type RuleEntity {
+  """group id"""
+  id: ID!
+
+  """rule code"""
+  code: String!
+
+  """rule code"""
+  slug: String!
+
+  """rules data"""
+  data: [RuleDataEntity!]!
+}
+
 type Query {
   getArticles: [ArticlesEntity!]!
   getArticleById(id: Int!): ArticlesEntity!
@@ -406,6 +445,7 @@ type Mutation {
   createLesson(createLessonInput: CreateLessonInput!): LessonEntity!
   updateLessonStatus(input: UpdateLessonStatusInput!): LessonEntity!
   createTranslate(input: CreateArticlesTranslateInput!): TranslateEntity!
+  register(email: String!, password: String!): RegisterResponse!
 }
 
 input UpdateArticlesStatusInput {
